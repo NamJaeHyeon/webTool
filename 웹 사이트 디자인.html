@@ -1,0 +1,164 @@
+﻿<!doctype html>
+
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript">
+			$(document).ready( function() {
+				$("#contents").load("testContents.html");
+			});
+		</script>
+		<style>
+			body{
+				width: 100%;
+				height: 100%;
+				background-color: black;
+				margin: 0px;
+			}
+			.header{
+				width: 100%;
+				height: 100px;
+				background-color: white;
+				text-align: center;
+				font-size: 60px;
+				font-weight: bold;
+				padding-top: 15px;
+				box-shadow: 5px 5px 5px skyblue;
+				position: relative;
+				z-index: 100;
+				margin-bottom: 10px;
+			}
+			.container{
+				display: grid;
+				height: 900px;
+				z-index: -10;
+				grid-template-columns: 200px 1fr;
+			}
+			.container_left{
+				background-color: #BBBBBB;
+			}
+			.container_left_menu{
+				display: grid;
+				grid-template-columns: 65px 65px 65px;
+				background-color: black;
+			}
+			.container_left_menu div{
+				background-color: gray;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				margin: 3px;
+				margin-bottom: 0;
+				text-align: center;
+				font-weight: bold;
+			}
+			.container_left_menu div:hover{
+				background-color: #BBBBBB;
+				color: white;
+			}
+			.container_left_menu .selected{
+				background-color: #BBBBBB;
+			}
+			li ul{
+				list-style: none;
+			}
+			.container_right{
+				background-color: #DDDDDD;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				margin-left: 7px;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+			.container_right div{
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+			.edit{
+				background-color: white;
+				margin: 5px;
+				height: 650px;
+			}
+			.res{
+				background-color: white;
+				margin: 5px;
+				height: 650px;
+			}
+			.select_tag_list li:hover{
+				background-color: rgba(255,255,255,0.33);
+			}
+			.watchres{
+				display: block;
+				margin-left: 60%;
+				margin-right: 10%;
+				padding-left: 20px;
+				padding-right: 20px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				align-items: center;
+				background-color: rgb(200,200,200);
+			}
+			.watchres:hover{
+				background-color: rgb(150,150,150);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			웹 사이트 디자인
+		</div>
+		<div class="container">
+			<div class="container_left">
+				<div class="container_left_menu">
+					<script type="text/javascript">
+						function changeList(index1){
+							document.getElementById('menu1').className="list1";
+							document.getElementById('menu2').className="list2";
+							document.getElementById('menu3').className="list3";
+							document.getElementById(index1).className="selected";
+							if(index1==='menu1'){
+								document.getElementById('list_id').innerHTML = "<li>&lt"+"html> <head> <body> <title> <meta> <div> <a> <script> <link> <img> <span> <p> <li> <ul> <style> <br> <h1> <h2> <input> <form> <h3> <nav> <header> <footer> <iframe> <strong> <button> <i".replace(/> </g,"&gt</li><li>&lt")+"&gt</li>";
+							}
+							else if(index1=='menu2'){
+								document.getElementById('list_id').innerHTML = "<li>font-size margin-top margin-left color margin-bottom margin-right padding-left padding-top padding-bottom padding-right background-color width display font-family height border-bottom-width border-top-width font-weight border-left-width border-right-width text-align line-height position border-bottom-style border-top-style border-left-style border-right-style border-bottom-color border-top-color border-left-color border-right-color float</li>".replace(/ /g,"</li><li>");
+							}
+						}
+					</script>
+					<div id="menu1" class="list1" onclick="changeList('menu1')">
+						HTML
+					</div>
+					<div id="menu2" class="list2" onclick="changeList('menu2')">
+						CSS
+					</div>
+					<div id="menu3" class="list3" onclick="changeList('menu3')">
+						JS
+					</div>
+				</div>
+				<div>
+					<ul class="lists" id="list_id">
+					</ul>
+				</div>
+			</div>
+			<div class="container_right">
+				<div class="edit" id="editspace">
+					<textarea placeholder="HTML 소스를 입력해 보세요!!" onchange="changetheres()" id="makingcontents" style="width: 90%; height: 85%; board: 0; margin: 10px;"></textarea>
+						<script>
+							function changetheres(){
+								document.getElementById("contents").innerHTML = document.getElementById("makingcontents").value;
+							}
+						</script>
+					<div class="watchres">
+						<div style="float:left;font-weight:bold;font-size:17px;margin-right:5px;">결과보기 </div>
+						<img src="html_arrow.png" style="height:20px;width:20px;left:4px;right:4px;">
+					</div>
+				</div>
+				<div id="contents" class="res">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
